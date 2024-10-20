@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gymnastics_app/src/features/auth/login_register/login_page.dart';
+import 'package:gymnastics_app/core/ui/widgets/router_screen_widget.dart';
 
 class GymnasticsApp extends StatelessWidget {
   const GymnasticsApp({super.key});
@@ -8,13 +8,13 @@ class GymnasticsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Gymnastics App - LAS',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       // home: ExercisePage(),
-      home: const LoginPage(),
+      home: const RouterScreenWidget(),
     );
   }
 }

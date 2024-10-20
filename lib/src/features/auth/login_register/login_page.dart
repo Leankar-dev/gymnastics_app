@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gymnastics_app/core/services/firebase/firebase_auth/auth_service.dart';
+import 'package:gymnastics_app/core/ui/helpers/gymnastics_snackbar_.dart';
 import 'package:gymnastics_app/core/ui/styles/gymnastics_app_colors.dart';
 import 'package:gymnastics_app/core/ui/widgets/gymnastics_textform_field_widget.dart';
 
@@ -12,14 +14,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailEC = TextEditingController();
   final _passwrodEC = TextEditingController();
+  final _nomeEC = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool wantToLogin = true;
+  final AuthService _authService = AuthService();
 
   @override
   void dispose() {
     super.dispose();
     _emailEC.dispose();
     _passwrodEC.dispose();
+    _nomeEC.dispose();
   }
 
   @override
@@ -63,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 32,
                       ),
                       GymnasticsTextformFieldWidget(
+                        controller: _emailEC,
                         label: 'E-mail',
                         validator: (String? value) {
                           if (value == null) {
@@ -79,7 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 8),
                       GymnasticsTextformFieldWidget(
+                        controller: _passwrodEC,
                         label: 'PassWord',
+                        obscureText: true,
                         validator: (String? value) {
                           if (value == null) {
                             return 'Favor digitar um Password';
@@ -110,6 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               const SizedBox(height: 8),
                               GymnasticsTextformFieldWidget(
+                                controller: _nomeEC,
                                 label: 'Nome',
                                 validator: (String? value) {
                                   if (value == null) {
@@ -157,8 +166,52 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   buttonMainClicked() {
+    String name = _nomeEC.text;
+    String password = _passwrodEC.text;
+    String email = _emailEC.text;
+
     if (_formKey.currentState!.validate()) {
-      print('Form valido');
+      if (wantToLogin) {
+        print('Entrada validada');
+        _authService
+            .loadUser(
+          email: email,
+          password: password,
+        )
+            .then(
+          (String? error) {
+            if (error != null) {
+              showSnackbar(context: context, text: error);
+            }
+          },
+        );
+      } else {
+        print('Cadastro validado');
+        _authService
+            .userRegister(
+          name: name,
+          password: password,
+          email: email,
+        )
+            .then(
+          (String? error) {
+            if (error != null) {
+              // voltou com erro
+              showSnackbar(
+                context: context,
+                text: error,
+              );
+              // } else {
+              //   // deu certo
+              //   showSnackbar(
+              //     context: context,
+              //     text: 'Cadastro efeturado com sucesso',
+              //     isError: false,
+              //   );
+            }
+          },
+        );
+      }
     } else {
       print('Form Invalido');
     }

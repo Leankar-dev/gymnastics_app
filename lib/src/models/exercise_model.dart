@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class ExerciseModel {
-  final String id;
+  String id;
   final String name;
   final String training;
   final String howTodo;

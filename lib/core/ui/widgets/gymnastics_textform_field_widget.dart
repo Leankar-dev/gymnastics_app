@@ -5,15 +5,18 @@ class GymnasticsTextformFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final String label;
+  final Icon? icon;
+
   final bool obscureText;
   final ValueNotifier<bool> _obscureTextVN;
 
   GymnasticsTextformFieldWidget({
     super.key,
     required this.label,
-    this.obscureText = true,
+    this.obscureText = false,
     this.controller,
     this.validator,
+    this.icon,
   }) : _obscureTextVN = ValueNotifier<bool>(obscureText);
 
   @override
@@ -25,7 +28,7 @@ class GymnasticsTextformFieldWidget extends StatelessWidget {
           controller: controller,
           validator: validator,
           obscureText: obscureTextVNValue,
-          decoration: getAuthenticationInputDecorationWidget(label),
+          decoration: getAuthenticationInputDecorationWidget(label, icon: icon),
         );
       },
     );

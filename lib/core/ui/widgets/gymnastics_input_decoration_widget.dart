@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gymnastics_app/core/ui/styles/gymnastics_app_colors.dart';
 
-InputDecoration getAuthenticationInputDecorationWidget(String label) {
+InputDecoration getAuthenticationInputDecorationWidget(String label,
+    {Icon? icon}) {
   return InputDecoration(
     // label: Text(label),
+    icon: icon,
     hintText: label,
     labelStyle:
         const TextStyle(fontSize: 15, color: GymnasticsAppColors.blackColor),

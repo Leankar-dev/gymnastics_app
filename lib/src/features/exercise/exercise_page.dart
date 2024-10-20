@@ -4,20 +4,24 @@ import 'package:gymnastics_app/src/models/exercise_model.dart';
 import 'package:gymnastics_app/src/models/feeling_model.dart';
 
 class ExercisePage extends StatelessWidget {
-  ExercisePage({super.key});
+  final ExerciseModel exerciseModel;
+  ExercisePage({
+    super.key,
+    required this.exerciseModel,
+  });
 
-  // criar instancias dos models criados
-  final ExerciseModel exerciseModel = ExerciseModel(
-    id: '001',
-    name: 'Remada Baixa Supinada',
-    training: 'Treino A',
-    howTodo: 'Segura com as duas mãos na barra, mantem a coluna reta...',
-  );
+  // // criar instancias dos models criados
+  // final ExerciseModel exerciseModel = ExerciseModel(
+  //   id: '001',
+  //   name: 'Remada Baixa Supinada',
+  //   training: 'Treino A',
+  //   howTodo: 'Segura com as duas mãos na barra, mantem a coluna reta...',
+  // );
 
   final List<FeelingModel> listFeeling = [
     FeelingModel(
       id: 'SE001',
-      feeling: 'Pouca Ativação',
+      feeling: 'Muito bem',
       date: '14/10/2024',
     ),
     FeelingModel(

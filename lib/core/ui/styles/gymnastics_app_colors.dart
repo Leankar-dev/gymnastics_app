@@ -8,6 +8,7 @@ class GymnasticsAppColors {
   static const Color secondaryColor = Color(0xFFF88B0C);
   static const Color greenLightInit = Color(0xFF63B5AF);
   static const Color greenLightEnd = Color(0xFF438883);
+  static const Color greenColor = Color(0xFF0BCBBE);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color iceWhite = Color(0xFFEEF8F7);
   static const Color blackColor = Color(0xFF000000);
