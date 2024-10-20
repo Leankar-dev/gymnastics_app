@@ -1,6 +1,6 @@
 # gymnastics_app
 
-A new Flutter project.
+APP para lançar seus exercicios de ginastica
 
 ## Getting Started
 
